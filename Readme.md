@@ -92,26 +92,26 @@ header variables: `user.nav` and `user` can be found here
 ## Adding a new view or a new partial view:
 1. Create the ejs in the view folder
 2. (Adding JS Files) Any JavaScript file associated with the view are currently placed in the /src folder
-3. Modify the webpack.config file; Any new or partial view requires a new HtmlWebPackPlugin section
-
-```
-new HtmlWebpackPlugin({
-    template: '!!raw-loader!src/views/example.ejs', // The view ejs file you made
-    chunks: ['common'], // the JS files you want to apply on the view in src; ie, if you want to add a file ['common', 'examplejsfile']
-    hash: true, // We do this to bust cache.
-    inject: true, 
-    filename: 'example.ejs'}), //the view ejs file you made
-```
-
-4. (Adding JS files for a view) Make edits in the same webpackconfigfile to the "entry section" if you want to add a new js file for a view
+3. (If adding a JS files for a view) Make edits in the same webpackconfigfile to the "entry section" if you want to add a new js file for a view
 ```
 entry: {
 settings: path.resolve(__dirname, 'src/settings'),
 webpack: 'webpack-hot-middleware/client',
 common: path.resolve(__dirname, 'src/common'),
-examplejsfile: path.resolve(__dirname, 'src/examplejsfile') <-------------add it like this one
+examplejsfile: path.resolve(__dirname, 'src/examplejsfile') <---add it like this one
 }
 ```
+4. Modify the webpack.config file; Any new or partial view requires a new HtmlWebPackPlugin section. Any js files
+- any JS files added in entry should have the same name as the file in chunks array;
+```
+new HtmlWebpackPlugin({
+    template: '!!raw-loader!src/views/example.ejs', // The view ejs file you made
+    chunks: ['common'], // ['common', 'examplejsfile'] if you want to add a JS file for that view 
+    hash: true, 
+    inject: true, 
+    filename: 'example.ejs'}), //the view ejs file you made
+```
+
 5. (Only if you are making another endpoint) Setup a new route in the routes directory; if you're adding onto an existing root endpoint (ie say you want to add /admin/newpage to /admin), then just append to an existing JS file.     
 
 
