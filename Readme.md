@@ -1,13 +1,13 @@
-#Documentation
+# Documentation
 
-#Commands for running the program.
-##If a new version is downloaded:
+# Commands for running the program.
+## If a new version is downloaded:
     1. Go to the root folder where the package.json file is located and open up your terminal in the folder
     2. "npm install" - this will create the node modules folder that will contain your dependencies 
     3. "npm run build:dev" - this will compile your code, make a dev folder and dev/public folder and pull up the server
     4. "npm run start" - if no changes were made and code is already compiled
 
-#Notable Tech Stack/API for the Project:
+# Notable Tech Stack/API for the Project:
     Node: platform tool
     Webpack: for compiling scripts
     Babel: for compiling new syntax
@@ -16,8 +16,8 @@
     EJS template engine: for views/GUI
     Passport: for routing, authorization, and authentication
 
-#Files and directories to consider
-##webpack.config.dev.js
+# Files and directories to consider
+## webpack.config.dev.js
     contains the webpack configurations that will neatly bundle all ejs, html, css files into the dev and dev/public folder
 
     it also tells the system to use babel to compile code into ES5 script
