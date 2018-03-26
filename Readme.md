@@ -24,7 +24,7 @@
     
     if you want to add new "views"/webpages, webpage partial views, or JS files that the views use, this is where you need to make edits. A view is a GUI that the user sees
 
-##./buildScripts/
+## ./buildScripts/
     devServer.js
         This is what the node server will read first (settings were written in the package.json file)
 
@@ -34,8 +34,8 @@
 
         Defines the root endpoints for all our views (i.e. localhost/admin/settings --> /admin will be the root for the admin router)
 
-#In the ./src directory
-    ##/config/local.strategy.js
+# In the ./src directory
+    ## /config/local.strategy.js
         Establishes credentials in the HTTP header.
 
         header variables: user.nav and user can be found here
@@ -43,7 +43,7 @@
 
             USER: used to check if a user accessing the endpoint is logged in as a user
 
-    ##/routes
+    ## /routes
         Contain instructions that tell what view to load at which endpoint.
 
         Contains instructions on which variables to load into the view/ejs file
@@ -58,25 +58,25 @@
             companyDataRoutes.js: The search page
             adminRoutes.js: Contains endpoints visible only to admin including settings (changing labels), and usermanagement (adding/removing users)
 
-    ##/service
+    ## /service
         Contains the file with functions that will send/retrieve HTTP requests from the Java API
 
         Enables access to public methods that can be used in JS files associated with views to retrieve/send data.
 
-    ##/views
+    ## /views
         Contains the files that the client would see. Essentially the GUI or webpages that will be displayed
 
         All files are ejs format which combines 
 
-    ##/common.js
+    ## /common.js
         Used to import libraries like BootStrap and jQuery into the views
 
-    ##/app.css
+    ## /app.css
         Contains global css styles.
 
 
 
-##package.json  
+## package.json  
     contains all the libraries, dev dependencies, dependencies that your web app will use.
 
     ##For Windows Users, make sure to replace the current script commands with these scripts. 
@@ -101,9 +101,9 @@
 
     ``` 
 
-Making Modifications to the Web App:
+# Making Modifications to the Web App:
     
-    Adding a new view or a new partial view:
+    ## Adding a new view or a new partial view:
         1. Create the ejs in the view folder
         2. (Adding JS Files) Any JavaScript file associated with the view are currently placed in the /src folder
         3. Modify the webpack.config file; Any new or partial view requires a new HtmlWebPackPlugin section
