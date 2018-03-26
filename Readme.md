@@ -1,6 +1,13 @@
-Documentation
+#Documentation
 
-Notable Tech Stack/API for the Project:
+#Commands for running the program.
+##If a new version is downloaded:
+    1. Go to the root folder where the package.json file is located and open up your terminal in the folder
+    2. "npm install" - this will create the node modules folder that will contain your dependencies 
+    3. "npm run build:dev" - this will compile your code, make a dev folder and dev/public folder and pull up the server
+    4. "npm run start" - if no changes were made and code is already compiled
+
+#Notable Tech Stack/API for the Project:
     Node: platform tool
     Webpack: for compiling scripts
     Babel: for compiling new syntax
@@ -9,16 +16,15 @@ Notable Tech Stack/API for the Project:
     EJS template engine: for views/GUI
     Passport: for routing, authorization, and authentication
 
-
-Files and directories to consider
-webpack.config.dev.js
+#Files and directories to consider
+##webpack.config.dev.js
     contains the webpack configurations that will neatly bundle all ejs, html, css files into the dev and dev/public folder
 
     it also tells the system to use babel to compile code into ES5 script
     
     if you want to add new "views"/webpages, webpage partial views, or JS files that the views use, this is where you need to make edits. A view is a GUI that the user sees
 
-./buildScripts/
+##./buildScripts/
     devServer.js
         This is what the node server will read first (settings were written in the package.json file)
 
@@ -28,8 +34,8 @@ webpack.config.dev.js
 
         Defines the root endpoints for all our views (i.e. localhost/admin/settings --> /admin will be the root for the admin router)
 
-./src
-    /config/local.strategy.js
+#In the ./src directory
+    ##/config/local.strategy.js
         Establishes credentials in the HTTP header.
 
         header variables: user.nav and user can be found here
@@ -37,7 +43,7 @@ webpack.config.dev.js
 
             USER: used to check if a user accessing the endpoint is logged in as a user
 
-    /routes
+    ##/routes
         Contain instructions that tell what view to load at which endpoint.
 
         Contains instructions on which variables to load into the view/ejs file
@@ -52,30 +58,29 @@ webpack.config.dev.js
             companyDataRoutes.js: The search page
             adminRoutes.js: Contains endpoints visible only to admin including settings (changing labels), and usermanagement (adding/removing users)
 
-    /service
+    ##/service
         Contains the file with functions that will send/retrieve HTTP requests from the Java API
 
         Enables access to public methods that can be used in JS files associated with views to retrieve/send data.
 
-    /views
+    ##/views
         Contains the files that the client would see. Essentially the GUI or webpages that will be displayed
 
         All files are ejs format which combines 
 
-    /common.js
+    ##/common.js
         Used to import libraries like BootStrap and jQuery into the views
 
-    /app.css
+    ##/app.css
         Contains global css styles.
 
 
 
-package.json  
+##package.json  
     contains all the libraries, dev dependencies, dependencies that your web app will use.
 
-    For Windows Users, make sure to replace the current script commands with these scripts. 
+    ##For Windows Users, make sure to replace the current script commands with these scripts. 
     ```
-    
     "scripts": {
     "make-dev-dir": "mkdir dev ",
     "make-dev-pub": "mkdir dev\\public ",
@@ -106,10 +111,10 @@ Making Modifications to the Web App:
         ```
         new HtmlWebpackPlugin({
           template: '!!raw-loader!src/views/example.ejs', // The view ejs file you made
-          chunks: ['common'], // the JS files you want to apply on the view in src; ie, if you want to add a file ['common', 'anotherjsfile']
+          chunks: ['common'], // the JS files you want to apply on the view in src; ie, if you want to add a file ['common', 'examplejsfile']
           hash: true, // We do this to bust cache.
           inject: true, 
-          filename: 'example.ejs'}),
+          filename: 'example.ejs'}), //the view ejs file you made
         ```
 
         4. (Adding JS files for a view) Make edits in the same webpackconfigfile to the "entry section" if you want to add a new js file for a view
@@ -117,7 +122,10 @@ Making Modifications to the Web App:
             settings: path.resolve(__dirname, 'src/settings'),
             webpack: 'webpack-hot-middleware/client',
             common: path.resolve(__dirname, 'src/common'),
-            examplejsfile: path.resolve(__dirname, 'src/examplejsfile'),},
+            examplejsfile: path.resolve(__dirname, 'src/examplejsfile') <-------------add it like this one
+            }
+        
+        5.(Only if you are making another endpoint) Setup a new route in the routes directory; if you're adding onto an existing root endpoint (ie say you want to add /admin/newpage to /admin), then just append to an existing JS file.     
 
 
 
